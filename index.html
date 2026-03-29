@@ -3,344 +3,1143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的個人博客 | My Personal Blog</title>
+    <title>Wiki 文檔中心 - 現代化科技感風格</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. 基礎設定與變數 (CSS Variables) --- */
-        :root {
-            --primary-color: #3498db;       /* 主色調：藍色 */
-            --text-color: #333;             /* 主要文字顏色 */
-            --bg-color: #f4f7f6;            /* 背景顏色 */
-            --card-bg: #ffffff;             /* 卡片背景 */
-            --secondary-text: #666;         /* 次要文字 */
-            --border-radius: 8px;           /* 圓角大小 */
-            --container-width: 1100px;      /* 內容最大寬度 */
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #09090B;
+            --bg-secondary: #18181B;
+            --bg-tertiary: #27272A;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-emphasized: rgba(255, 255, 255, 0.16);
+            --text-primary: #FAFAFA;
+            --text-secondary: #A1A1AA;
+            --text-muted: #71717A;
+            
+            --color-blue-500: #3B82F6;
+            --color-orange-500: #F97316;
+            --color-red-500: #EF4444;
+            --color-cyan-500: #06B6D4;
+            --color-green-500: #22C55E;
+            --color-purple-500: #A855F7;
+            --color-yellow-500: #EAB308;
+            --color-teal-500: #14B8A6;
+            
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            
+            --transition-fast: 0.15s;
+            --transition-moderate: 0.25s;
+            --transition-slow: 0.3s;
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: var(--font-mono);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.625;
+            min-height: 100vh;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: var(--primary-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* --- 2. 通用佈局容器 --- */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- 3. 導航欄 (Header) --- */
-        header {
-            background: var(--card-bg);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        /* 頂部導航欄 */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-4) var(--spacing-8);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
+            background: var(--bg-primary);
             z-index: 1000;
         }
 
-        nav {
+        .navbar-brand {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            height: 70px;
+            gap: var(--spacing-2);
+            text-decoration: none;
+            color: var(--text-primary);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .nav-links {
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
             display: flex;
-            gap: 20px;
+            align-items: center;
+            justify-content: center;
         }
 
-        .nav-links a {
+        .navbar-logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .navbar-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-6);
+            list-style: none;
+        }
+
+        .navbar-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .navbar-nav a:hover {
+            color: var(--text-primary);
+        }
+
+        .navbar-nav a.active {
+            color: var(--text-primary);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: var(--spacing-2) var(--spacing-3);
+            min-width: 280px;
+        }
+
+        .search-box svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            outline: none;
+            width: 100%;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* 主容器 */
+        .container {
+            display: flex;
+            max-width: 1920px;
+            margin: 0 auto;
+            min-height: calc(100vh - 73px);
+        }
+
+        /* 側邊欄 */
+        .sidebar {
+            width: 220px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 73px;
+            height: calc(100vh - 73px);
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .sidebar-title {
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: var(--spacing-3);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .sidebar-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .sidebar-section:hover .sidebar-title::after {
+            opacity: 1;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-1);
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-2) var(--spacing-3);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all var(--transition-fast);
+            border-left: 2px solid transparent;
+            background: transparent;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--border-color);
+            border-left-color: var(--item-color, var(--color-blue-500));
+            color: var(--text-primary);
+        }
+
+        .sidebar-nav a:hover .sidebar-item-icon {
+            border-color: color-mix(in srgb, var(--item-color, var(--color-blue-500)) 40%, transparent);
+            background: color-mix(in srgb, var(--item-color, var(--color-blue-500)) 10%, transparent);
+            color: var(--item-color, var(--color-blue-500));
+        }
+
+        .sidebar-nav a:hover .sidebar-item-text {
+            color: var(--text-primary);
             font-weight: 500;
         }
 
-        /* 手機版選單按鈕 (預設隱藏) */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .sidebar-nav a:hover .sidebar-item-chevron {
+            opacity: 1;
+            transform: translateX(0);
+            color: var(--text-muted);
         }
 
-        /* --- 4. 主要內容區 (Main Layout) --- */
-        .main-content {
+        .sidebar-nav a.active {
+            border-left-color: var(--item-color, var(--color-blue-500));
+            background: var(--border-color);
+        }
+
+        .sidebar-item-icon {
             display: flex;
-            gap: 30px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        /* 左側文章列表 */
-        .blog-posts {
-            flex: 3; /* 佔 3 份寬度 */
-        }
-
-        /* 右側側邊欄 */
-        .sidebar {
-            flex: 1; /* 佔 1 份寬度 */
-        }
-
-        /* --- 5. 文章卡片樣式 --- */
-        .post-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            transition: transform 0.2s;
-        }
-
-        .post-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        .post-meta {
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-            margin-bottom: 10px;
-        }
-
-        .post-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .post-excerpt {
-            color: var(--secondary-text);
-            margin-bottom: 20px;
-        }
-
-        .read-more {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 16px;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
-            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            color: var(--text-muted);
         }
 
-        .read-more:hover {
-            background: #2980b9;
-            color: white;
+        .sidebar-item-icon svg {
+            width: 20px;
+            height: 20px;
         }
 
-        /* --- 6. 側邊欄組件 --- */
-        .widget {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        .sidebar-item-text {
+            flex: 1;
+            white-space: nowrap;
+            transition: color var(--transition-fast);
         }
 
-        .widget-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 10px;
+        .sidebar-item-chevron {
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all var(--transition-fast);
         }
 
-        .category-list li {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #eee;
-            padding-bottom: 5px;
+        /* 主內容區 */
+        .main-content {
+            flex: 1;
+            padding: var(--spacing-8);
+            overflow-y: auto;
         }
 
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: #ddd; /* 佔位色 */
-            margin: 0 auto 15px;
-            display: block;
-            object-fit: cover;
+        .content-wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
         }
 
-        .profile-text {
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--secondary-text);
+        /* Hero 區域 */
+        .hero {
+            position: relative;
+            margin-bottom: var(--spacing-10);
+            padding-bottom: var(--spacing-8);
         }
 
-        /* --- 7. 頁腳 (Footer) --- */
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: calc(var(--spacing-2) * -1);
+            right: 0;
+            width: 80px;
+            height: 80px;
+            border-top: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+        }
+
+        .hero-grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-3);
+            animation: heroFadeIn 0.6s ease-out;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 768px;
+            animation: heroFadeIn 0.6s ease-out 0.1s both;
+        }
+
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 導航卡片網格 */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-5);
+            margin-bottom: var(--spacing-10);
+        }
+
+        @media (min-width: 768px) {
+            .nav-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* 導航卡片 */
+        .nav-card {
+            position: relative;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .nav-card-bracket {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: var(--chakra-colors-color-palette-500);
+            opacity: 0.5;
+            transition: all 0.2s;
+        }
+
+        .nav-card-bracket-top-left {
+            top: 0;
+            left: 0;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .nav-card-bracket-top-right {
+            top: 0;
+            right: 0;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .nav-card-bracket-bottom-left {
+            bottom: 0;
+            left: 0;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .nav-card-bracket-bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .nav-card:hover .nav-card-bracket {
+            opacity: 1;
+            width: 16px;
+            height: 16px;
+        }
+
+        .nav-card-inner {
+            position: relative;
+            border: 1px solid var(--border-color);
+            padding: var(--spacing-8);
+            height: 100%;
+            transition: all var(--transition-moderate) ease-out;
+            overflow: hidden;
+        }
+
+        .nav-card:hover .nav-card-inner {
+            border-color: var(--chakra-colors-color-palette-500);
+        }
+
+        .nav-card-gradient {
+            mix-blend-mode: soft-light;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--chakra-colors-color-palette-500) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity var(--transition-slow) ease-out;
+            pointer-events: none;
+        }
+
+        .nav-card:hover .nav-card-gradient {
+            opacity: 1;
+        }
+
+        .nav-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+            height: 100%;
+            position: relative;
+        }
+
+        .nav-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .nav-card-icon-box {
+            position: relative;
+            padding: var(--spacing-3);
+            background: color-mix(in srgb, var(--chakra-colors-color-palette-500) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--chakra-colors-color-palette-500) 30%, transparent);
+            transition: all 0.25s;
+        }
+
+        .nav-card:hover .nav-card-icon-box {
+            background: color-mix(in srgb, var(--chakra-colors-color-palette-500) 20%, transparent);
+            border-color: var(--chakra-colors-color-palette-500);
+        }
+
+        .nav-card-icon {
+            height: 32px;
+            width: 32px;
+            color: var(--chakra-colors-color-palette-500);
+        }
+
+        .nav-card-icon svg {
+            height: 1em;
+            width: 1em;
+        }
+
+        .nav-card-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, var(--chakra-colors-color-palette-500) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .nav-card:hover .nav-card-glow {
+            opacity: 0.15;
+        }
+
+        .nav-card-title {
+            font-weight: 500;
+            letter-spacing: -0.025em;
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+
+        .nav-card-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.625;
+            flex: 1;
+        }
+
+        .nav-card-footer {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-1);
             margin-top: auto;
         }
 
-        footer p {
-            opacity: 0.8;
+        .nav-card-footer-text {
+            color: var(--chakra-colors-color-palette-500);
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* --- 8. 響應式設計 (RWD) --- */
+        .nav-card-chevron {
+            color: var(--chakra-colors-color-palette-500);
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s;
+        }
+
+        .nav-card:hover .nav-card-chevron {
+            transform: translateX(4px);
+        }
+
+        /* 分隔線 */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .section-divider-line {
+            height: 1px;
+            flex: 1;
+            max-width: 40px;
+            background: var(--border-emphasized);
+        }
+
+        .section-divider-line-full {
+            height: 1px;
+            flex: 1;
+            background: var(--border-color);
+        }
+
+        .section-divider-text {
+            color: var(--text-secondary);
+            font-size: 0.625rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* 頁腳 */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-4) var(--spacing-8);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-6);
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* 響應式設計 */
         @media (max-width: 768px) {
+            .navbar {
+                padding: var(--spacing-4);
+            }
+
+            .navbar-nav {
+                display: none;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
             .main-content {
-                flex-direction: column; /* 手機版改為垂直排列 */
+                padding: var(--spacing-4);
             }
 
-            .nav-links {
-                display: none; /* 預設隱藏選單 */
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--card-bg);
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            .hero-title {
+                font-size: 1.5rem;
             }
 
-            .nav-links.active {
-                display: flex; /* 點擊後顯示 */
+            .nav-card-inner {
+                padding: var(--spacing-6);
             }
+        }
 
-            .menu-toggle {
-                display: block; /* 手機版顯示漢堡選單 */
-            }
+        /* 自定義滾動條 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--text-muted);
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--bg-secondary);
+        }
+
+        /* 顏色主題類 */
+        .theme-blue {
+            --chakra-colors-color-palette-500: var(--color-blue-500);
+        }
+
+        .theme-orange {
+            --chakra-colors-color-palette-500: var(--color-orange-500);
+        }
+
+        .theme-red {
+            --chakra-colors-color-palette-500: var(--color-red-500);
+        }
+
+        .theme-cyan {
+            --chakra-colors-color-palette-500: var(--color-cyan-500);
+        }
+
+        .theme-green {
+            --chakra-colors-color-palette-500: var(--color-green-500);
+        }
+
+        .theme-purple {
+            --chakra-colors-color-palette-500: var(--color-purple-500);
+        }
+
+        .theme-yellow {
+            --chakra-colors-color-palette-500: var(--color-yellow-500);
+        }
+
+        .theme-teal {
+            --chakra-colors-color-palette-500: var(--color-teal-500);
         }
     </style>
 </head>
 <body>
+    <!-- 頂部導航欄 -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <div class="navbar-logo">
+                <svg viewBox="0 0 1000 360" fill="currentColor">
+                    <g>
+                        <path d="m198 157.4l40.4-155.6h157.5v356.4h-126.6v-166.5l-38.5 166.5h-65.7l-38.5-166.5v166.5h-126.6v-356.4h157.5z"/>
+                        <path d="m681 2.3v75.6h-66.6v279.8h-134.3v-279.8h-66.6v-75.6z"/>
+                        <path d="m695.5 57l86.1-56.2h133.2l85.2 56.2v90h-134.2v-66.7h-32.8v203.2h33.8v-82.8h133.2v107.5l-81.8 51h-132.8l-89.9-51z"/>
+                    </g>
+                </svg>
+            </div>
+            <span class="navbar-title">Wiki</span>
+        </a>
 
-    <!-- 導航欄 -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">MyBlog.</a>
-                <div class="menu-toggle" id="mobile-menu">☰</div>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#">首頁</a></li>
-                    <li><a href="#">關於我</a></li>
-                    <li><a href="#">文章列表</a></li>
-                    <li><a href="#">聯絡方式</a></li>
-                </ul>
-            </nav>
+        <ul class="navbar-nav">
+            <li><a href="#" class="active">首頁</a></li>
+            <li><a href="#">文檔</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">社區</a></li>
+            <li><a href="#">關於</a></li>
+        </ul>
+
+        <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" placeholder="搜尋文檔...">
         </div>
-    </header>
+    </nav>
 
-    <!-- 主要內容區 -->
-    <div class="container main-content">
-        
-        <!-- 左側：文章列表 -->
-        <main class="blog-posts">
-            
-            <!-- 文章 1 -->
-            <article class="post-card">
-                <div class="post-meta">2023 年 10 月 24 日 | 技術筆記</div>
-                <h2 class="post-title"><a href="#">如何開始學習 HTML 與 CSS</a></h2>
-                <p class="post-excerpt">
-                    網頁開發的第一步總是從基礎開始。這篇文章將介紹如何建立你的第一個網頁，以及理解區塊元素與行內元素的區別...
-                </p>
-                <a href="#" class="read-more">閱讀全文 →</a>
-            </article>
-
-            <!-- 文章 2 -->
-            <article class="post-card">
-                <div class="post-meta">2023 年 10 月 20 日 | 生活隨筆</div>
-                <h2 class="post-title"><a href="#">週末的咖啡廳探險</a></h2>
-                <p class="post-excerpt">
-                    在這個忙碌的城市中，尋找一個安靜的角落享受一杯好咖啡是一種療癒。上週末我去了幾家隱藏在巷弄裡的咖啡廳...
-                </p>
-                <a href="#" class="read-more">閱讀全文 →</a>
-            </article>
-
-            <!-- 文章 3 -->
-            <article class="post-card">
-                <div class="post-meta">2023 年 10 月 15 日 | 攝影作品</div>
-                <h2 class="post-title"><a href="#">秋天的色彩：攝影集分享</a></h2>
-                <p class="post-excerpt">
-                    金黃的銀杏與紅色的楓葉，秋天總是帶來最豐富的視覺饗宴。這裡是我最近拍攝的一些照片，希望能帶給你一點好心情。
-                </p>
-                <a href="#" class="read-more">閱讀全文 →</a>
-            </article>
-
-        </main>
-
-        <!-- 右側：側邊欄 -->
+    <div class="container">
+        <!-- 側邊欄 -->
         <aside class="sidebar">
-            
-            <!-- 關於我 -->
-            <div class="widget">
-                <h3 class="widget-title">關於作者</h3>
-                <!-- 這裡可以換成你的照片連結 -->
-                <img src="https://via.placeholder.com/150" alt="作者頭像" class="profile-img">
-                <p class="profile-text">
-                    你好！我是小明，一名熱愛編程與寫作的自由工作者。這裡是我的數位花園，歡迎常來坐坐。
-                </p>
-            </div>
-
-            <!-- 分類目錄 -->
-            <div class="widget">
-                <h3 class="widget-title">分類目錄</h3>
-                <ul class="category-list">
-                    <li><a href="#">技術筆記 (12)</a></li>
-                    <li><a href="#">生活隨筆 (8)</a></li>
-                    <li><a href="#">攝影作品 (5)</a></li>
-                    <li><a href="#">書單分享 (3)</a></li>
+            <div class="sidebar-section">
+                <div class="sidebar-title">快速入門</div>
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" class="active" style="--item-color: var(--color-blue-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9 22 9 12 15 12 15 22"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">歡迎使用</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="--item-color: var(--color-orange-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">安裝指南</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="--item-color: var(--color-red-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">配置說明</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
-            <!-- 熱門標籤 -->
-            <div class="widget">
-                <h3 class="widget-title">標籤雲</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-                    <a href="#" style="background:#eee; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">HTML</a>
-                    <a href="#" style="background:#eee; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">CSS</a>
-                    <a href="#" style="background:#eee; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">JavaScript</a>
-                    <a href="#" style="background:#eee; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">生活</a>
-                    <a href="#" style="background:#eee; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">旅遊</a>
+            <div class="sidebar-section">
+                <div class="sidebar-title">核心功能</div>
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" style="--item-color: var(--color-cyan-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">功能特性</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="--item-color: var(--color-green-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"/>
+                                    <polyline points="8 6 2 12 8 18"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">API 文檔</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">高級主題</div>
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" style="--item-color: var(--color-purple-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">高級配置</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="--item-color: var(--color-yellow-500)">
+                            <div class="sidebar-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                            </div>
+                            <span class="sidebar-item-text">故障排除</span>
+                            <svg class="sidebar-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 主內容區 -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Hero 區域 -->
+                <section class="hero">
+                    <div class="hero-grid-bg"></div>
+                    <h1 class="hero-title">Wiki 文檔中心</h1>
+                    <p class="hero-description">共建、共享、共成長。專業的知識管理與協作平台。</p>
+                </section>
+
+                <!-- 導航卡片網格 - 主要功能 -->
+                <div class="nav-grid">
+                    <div class="nav-card theme-blue">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M2 12m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z"/>
+                                            <path d="M6 12l1 -5h5l3 5"/>
+                                            <path d="M21 9l-7.8 0"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">車輛資料庫</h2>
+                                </div>
+                                <p class="nav-card-description">探索遊戲中所有車輛的詳細特徵與性能參數。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看車輛</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card theme-orange">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 512 512" fill="currentColor">
+                                            <path d="M372.386 52.97l-14.822 13.064 103.244 117.142 14.822-13.064zm-30.23 26.646l-36.649 32.303 15.549 17.64zm16.865 16.346l-20.442 48.382-1.457 3.448 19.012 21.57 21.897-51.832zm-67.537 28.318L119.939 275.485l.054.062-1.294 1.141c-19.625 17.298-36.277 35.67-49.407 53.91l92.854 105.356c19.745-10.734 40.062-24.948 59.687-42.246l1.295-1.143.055.063 6.23-5.493 165.313-145.713zm102.615 11.482l-20.443 48.385-1.456 3.445 20.838 23.641 21.897-51.83zm36.904 41.873l-20.441 48.385-.973 2.303 37.194-32.783zM58.583 346.723c-4.228 6.959-7.93 13.848-11.015 20.592-6.73 14.712-10.7 28.778-11.157 41.78-.457 13.001 2.827 25.259 10.93 34.452 8.103 9.194 19.85 13.989 32.805 15.168 12.955 1.18 27.408-.992 42.847-5.822 7.078-2.214 14.377-5.02 21.811-8.342z"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">彈藥性能</h2>
+                                </div>
+                                <p class="nav-card-description">查看彈藥性能、穿透數值和傷害特性數據。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看彈藥</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card theme-red">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">陣營隊伍</h2>
+                                </div>
+                                <p class="nav-card-description">瀏覽各陣營車輛選擇和隊伍組成配置。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看隊伍</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card theme-cyan">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M3 14h4v-4H3v4zm0 5h4v-4H3v4zM3 9h4V5H3v4zm5 5h13v-4H8v4zm0 5h13v-4H8v4zM8 5v4h13V5H8z"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">裝備配置</h2>
+                                </div>
+                                <p class="nav-card-description">探索時代基於的裝備配置並比較隊伍組成。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看配置</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分隔線 -->
+                <div class="section-divider">
+                    <div class="section-divider-line"></div>
+                    <span class="section-divider-text">數據分析</span>
+                    <div class="section-divider-line-full"></div>
+                </div>
+
+                <!-- 導航卡片網格 - 數據分析 -->
+                <div class="nav-grid">
+                    <div class="nav-card theme-green">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 16 16" fill="currentColor">
+                                            <path d="M0 3v11h16v-11H0zM6 10v-2h4v2H6zM10 11v2H6v-2h4zM10 5v2H6V5h4zM5 5v2H1V5h4zM1 8h4v2H1V8zM11 8h4v2h-4V8zM11 7V5h4v2h-4zM1 11h4v2H1v-2zM11 13v-2h4v2h-4z"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">K/D 統計表</h2>
+                                </div>
+                                <p class="nav-card-description">查看遊戲中所有車輛的擊殺死亡比率數據。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看統計</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card theme-purple">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M21 5.47L12 12 7.62 7.62 3 11V8.52L7.83 5l4.38 4.38L21 3v2.47zM21 15h-4.7l-4.17 3.34L6 12.41l-3 2.13V17l2.8-2 6.2 6 5-4h4v-2z"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">勝率追蹤</h2>
+                                </div>
+                                <p class="nav-card-description">追蹤不同地圖和配置下的隊伍表現隨時間變化。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看勝率</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分隔線 -->
+                <div class="section-divider">
+                    <div class="section-divider-line"></div>
+                    <span class="section-divider-text">工具</span>
+                    <div class="section-divider-line-full"></div>
+                </div>
+
+                <!-- 導航卡片網格 - 工具 -->
+                <div class="nav-grid">
+                    <div class="nav-card theme-yellow">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="5" cy="6" r="3"/>
+                                            <path d="M12 6h5a2 2 0 0 1 2 2v7"/>
+                                            <path d="m15 9-3-3 3-3"/>
+                                            <circle cx="19" cy="18" r="3"/>
+                                            <path d="M12 18H7a2 2 0 0 1-2-2V9"/>
+                                            <path d="m9 15 3 3-3 3"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">對比工具</h2>
+                                </div>
+                                <p class="nav-card-description">並排比較多個車輛或彈藥的統計數據和特性。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">開始對比</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-card theme-teal">
+                        <div class="nav-card-bracket nav-card-bracket-top-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-top-right"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-left"></div>
+                        <div class="nav-card-bracket nav-card-bracket-bottom-right"></div>
+                        <div class="nav-card-inner">
+                            <div class="nav-card-gradient"></div>
+                            <div class="nav-card-content">
+                                <div class="nav-card-header">
+                                    <div class="nav-card-icon-box">
+                                        <svg class="nav-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+                                        </svg>
+                                        <div class="nav-card-glow"></div>
+                                    </div>
+                                    <h2 class="nav-card-title">裝甲視覺化</h2>
+                                </div>
+                                <p class="nav-card-description">使用自定義顏色映射可視化車輛裝甲厚度。</p>
+                                <div class="nav-card-footer">
+                                    <span class="nav-card-footer-text">查看裝甲</span>
+                                    <svg class="nav-card-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        </aside>
+        </main>
     </div>
 
     <!-- 頁腳 -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 My Personal Blog. All Rights Reserved.</p>
-            <p>Designed with ❤️ by You</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="#">使用條款</a></li>
+                <li><a href="#">隱私政策</a></li>
+                <li><a href="#">聯絡我們</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+            <p class="footer-copyright">© 2024 Wiki 文檔中心。保留所有權利。</p>
         </div>
     </footer>
 
-    <!-- 簡單的 JavaScript 用於手機選單 -->
     <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('nav-links');
+        // 側邊欄導航點擊效果
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // 導航卡片點擊效果
+        document.querySelectorAll('.nav-card').forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('導航卡片點擊:', this.querySelector('.nav-card-title').textContent);
+            });
+        });
+
+        // 搜尋框功能
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            console.log('搜尋:', searchTerm);
         });
     </script>
 </body>
 </html>
+
