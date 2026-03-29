@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>概述 - 奧地利 ODL 華人團</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #09090B;
+            --bg-secondary: #18181B;
+            --bg-tertiary: #27272A;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-emphasized: rgba(255, 255, 255, 0.16);
+            --text-primary: #FAFAFA;
+            --text-secondary: #A1A1AA;
+            --text-muted: #71717A;
+            
+            --color-blue-500: #3B82F6;
+            --color-orange-500: #F97316;
+            --color-red-500: #EF4444;
+            --color-cyan-500: #06B6D4;
+            --color-green-500: #22C55E;
+            --color-purple-500: #A855F7;
+            --color-yellow-500: #EAB308;
+            --color-teal-500: #14B8A6;
+            
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            
+            --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+            
+            --transition-fast: 0.15s;
+            --transition-moderate: 0.25s;
+            --transition-slow: 0.3s;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.625;
+            min-height: 100vh;
+        }
+
+        /* 頂部導航欄 */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-4) var(--spacing-8);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar-logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .navbar-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-6);
+            list-style: none;
+        }
+
+        .navbar-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .navbar-nav a:hover,
+        .navbar-nav a.active {
+            color: var(--text-primary);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-4) var(--spacing-8);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color var(--transition-fast);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--text-primary);
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+        }
+
+        .breadcrumb-separator {
+            color: var(--border-color);
+        }
+
+        /* 主內容區 */
+        .main-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--spacing-8);
+        }
+
+        /* Hero 圖片區域 */
+        .hero-section {
+            position: relative;
+            margin-bottom: var(--spacing-12);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                transparent 50%,
+                rgba(9, 9, 11, 0.8) 100%
+            );
+        }
+
+        /* 四角裝飾框 */
+        .hero-bracket {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-color: var(--color-blue-500);
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .hero-bracket-top-left {
+            top: 0;
+            left: 0;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .hero-bracket-top-right {
+            top: 0;
+            right: 0;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+
+        .hero-bracket-bottom-left {
+            bottom: 0;
+            left: 0;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+
+        .hero-bracket-bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+
+        /* 標題文字 - 圖片左側底部 */
+        .hero-title-container {
+            position: absolute;
+            bottom: var(--spacing-6);
+            left: var(--spacing-6);
+            z-index: 20;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            color: var(--text-primary);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .hero-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 網格背景 */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        /* 內容區域 */
+        .content-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-8);
+        }
+
+        @media (min-width: 768px) {
+            .content-section {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* 介紹文字區域 */
+        .intro-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: var(--spacing-8);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-3);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .section-title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-blue-500);
+        }
+
+        .intro-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .intro-text p {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 資訊卡片 */
+        .info-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .info-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-card-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-3);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .info-card-title svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-blue-500);
+        }
+
+        .info-card-content {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.625;
+        }
+
+        /* 標籤 */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-2);
+            margin-top: var(--spacing-4);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-1);
+            padding: var(--spacing-1) var(--spacing-3);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .tag svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-2) var(--spacing-4);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .back-button:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            border-color: var(--color-blue-500);
+        }
+
+        .back-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 頁腳 */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: var(--spacing-6) var(--spacing-8);
+            margin-top: var(--spacing-16);
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-4);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-6);
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: var(--spacing-4);
+            }
+
+            .navbar-nav {
+                display: none;
+            }
+
+            .main-content {
+                padding: var(--spacing-4);
+            }
+
+            .hero-image-container {
+                height: 300px;
+            }
+
+            .hero-title {
+                font-size: 1.5rem;
+            }
+
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 自定義滾動條 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--text-muted);
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: var(--bg-secondary);
+        }
+
+        /* 動畫 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-section,
+        .info-card {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .info-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .info-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部導航欄 -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <div class="navbar-logo">
+                <svg viewBox="230 0 500 360" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <image href="https://upload.wikimedia.org/wikipedia/commons/e/ed/Coat_of_arms_of_the_lands_of_the_Bohemian_Crown.svg"
+                               x="0" y="0" width="1400" height="504"
+                               preserveAspectRatio="xMidYMid meet" transform="translate(-200,-72)" />
+                    </g>
+                </svg>
+            </div>
+            <span class="navbar-title">奧地利 ODL 華人團</span>
+        </a>
+
+        <ul class="navbar-nav">
+            <li><a href="#" class="active">首頁</a></li>
+            <li><a href="#">文檔</a></li>
+            <li><a href="#">資源</a></li>
+            <li><a href="#">關於</a></li>
+        </ul>
+    </nav>
+
+    <!-- 麵包屑導航 -->
+    <div class="breadcrumb">
+        <a href="#">首頁</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>概述</span>
+    </div>
+
+    <!-- 主內容區 -->
+    <main class="main-content">
+        <!-- 返回按鈕 -->
+        <a href="#" class="back-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            返回首頁
+        </a>
+
+        <!-- Hero 圖片區域 -->
+        <section class="hero-section">
+            <div class="hero-image-container">
+                <!-- 網格背景 -->
+                <div class="grid-bg"></div>
+                
+                <!-- 圖片 -->
+                <img src="https://images.unsplash.com/photo-1542259681-d4cd71d2a167?w=1280&h=400&fit=crop" 
+                     alt="概述封面圖" 
+                     class="hero-image">
+                
+                <!-- 漸層遮罩 -->
+                <div class="hero-overlay"></div>
+                
+                <!-- 四角裝飾框 -->
+                <div class="hero-bracket hero-bracket-top-left"></div>
+                <div class="hero-bracket hero-bracket-top-right"></div>
+                <div class="hero-bracket hero-bracket-bottom-left"></div>
+                <div class="hero-bracket hero-bracket-bottom-right"></div>
+                
+                <!-- 標題文字 - 左側底部 -->
+                <div class="hero-title-container">
+                    <h1 class="hero-title">概述</h1>
+                    <p class="hero-subtitle">Overview · 奧地利 ODL 華人團</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 內容區域 -->
+        <section class="content-section">
+            <!-- 主要介紹文字 -->
+            <div class="intro-section">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    團體介紹
+                </h2>
+                
+                <div class="intro-text">
+                    <p>歡迎來到奧地利 ODL 華人團的官方文檔中心。本頁面提供團體的完整概述，包括組織架構、成員資訊、活動記錄等核心內容。</p>
+                    
+                    <p>奧地利 ODL 華人團成立於遊戲早期，致力於為華語玩家提供一個友好的遊戲環境。我們定期組織團隊活動、訓練課程，並積極參與遊戲內的各種挑戰。</p>
+                    
+                    <p>無論您是新加入的成員還是資深玩家，都可以在這裡找到所需的資訊。我們的文檔會持續更新，確保內容的準確性和完整性。</p>
+                </div>
+
+                <!-- 標籤 -->
+                <div class="tag-container">
+                    <span class="tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        組織架構
+                    </span>
+                    <span class="tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        活動記錄
+                    </span>
+                    <span class="tag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        最新更新
+                    </span>
+                </div>
+            </div>
+
+            <!-- 側邊資訊卡片 -->
+            <aside>
+                <div class="info-card">
+                    <h3 class="info-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        基本資訊
+                    </h3>
+                    <div class="info-card-content">
+                        <p>成立時間：2024 年</p>
+                        <p>所屬伺服器：奧地利</p>
+                        <p>主要語言：中文</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="info-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        成員統計
+                    </h3>
+                    <div class="info-card-content">
+                        <p>活躍成員：持續更新中</p>
+                        <p>軍官團隊：持續更新中</p>
+                        <p>新人歡迎加入</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="info-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        最近更新
+                    </h3>
+                    <div class="info-card-content">
+                        <p>文檔系統上線</p>
+                        <p>持續完善中</p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="#">使用條款</a></li>
+                <li><a href="#">隱私政策</a></li>
+                <li><a href="#">聯絡我們</a></li>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+            <p class="footer-copyright">© 2024 奧地利 ODL 華人團。保留所有權利。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 返回按鈕功能
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.history.back();
+        });
+
+        // 導航連結點擊效果
+        document.querySelectorAll('.navbar-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.navbar-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
