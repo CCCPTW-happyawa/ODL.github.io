@@ -1291,10 +1291,80 @@
         .company-block {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: 0;
             margin-bottom: var(--spacing-10);
             margin-top: var(--spacing-10);
             overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .company-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .company-block::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0;
+            background: transparent;
+            pointer-events: none;
+            z-index: 0;
+            transition: all 0.4s ease;
+        }
+
+        .company-block:hover {
+            transform: translateY(-2px);
+        }
+
+        .company-block.green::before {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
+        }
+        .company-block.blue::before {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+        }
+        .company-block.orange::before {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, rgba(249, 115, 22, 0.02) 100%);
+        }
+
+        .company-block.green:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        .company-block.blue:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        .company-block.orange:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        .company-block.green:hover::after {
+            background: radial-gradient(ellipse at 0% 0%, rgba(34, 197, 94, 0.15) 0%, transparent 60%);
+        }
+        .company-block.blue:hover::after {
+            background: radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+        }
+        .company-block.orange:hover::after {
+            background: radial-gradient(ellipse at 0% 0%, rgba(249, 115, 22, 0.15) 0%, transparent 60%);
         }
 
         .company-block-header {
@@ -1310,11 +1380,54 @@
             height: 48px;
             background: color-mix(in srgb, var(--company-color) 10%, transparent);
             border: 1px solid color-mix(in srgb, var(--company-color) 30%, transparent);
-            border-radius: 4px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .company-block-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            background: transparent;
+            transition: all 0.4s ease;
+            z-index: 1;
+        }
+
+        .company-block:hover .company-block-icon {
+            transform: scale(1.05);
+        }
+
+        .company-block.green:hover .company-block-icon::before {
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, rgba(34, 197, 94, 0.1) 50%, transparent 70%);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.5), inset 0 0 20px rgba(34, 197, 94, 0.15);
+        }
+        .company-block.blue:hover .company-block-icon::before {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5), inset 0 0 20px rgba(59, 130, 246, 0.15);
+        }
+        .company-block.orange:hover .company-block-icon::before {
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, rgba(249, 115, 22, 0.1) 50%, transparent 70%);
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5), inset 0 0 20px rgba(249, 115, 22, 0.15);
+        }
+
+        .company-block.green:hover .company-block-icon {
+            border-color: rgba(34, 197, 94, 0.6);
+        }
+        .company-block.blue:hover .company-block-icon {
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+        .company-block.orange:hover .company-block-icon {
+            border-color: rgba(249, 115, 22, 0.6);
         }
 
         .company-block-icon svg {
@@ -1905,7 +2018,7 @@
                 </section>
 
                 <!-- 第一連隊 -->
-                <article class="company-block" style="--company-color: var(--color-green-500)" aria-labelledby="company1-title">
+                <article class="company-block green" style="--company-color: var(--color-green-500)" aria-labelledby="company1-title">
                     <div class="company-block-header">
                         <div class="company-block-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1952,7 +2065,7 @@
                 </article>
 
                 <!-- 第二連隊 -->
-                <article class="company-block" style="--company-color: var(--color-blue-500)" aria-labelledby="company2-title">
+                <article class="company-block blue" style="--company-color: var(--color-blue-500)" aria-labelledby="company2-title">
                     <div class="company-block-header">
                         <div class="company-block-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1999,7 +2112,7 @@
                 </article>
 
                 <!-- 第三連隊 -->
-                <article class="company-block" style="--company-color: var(--color-orange-500)" aria-labelledby="company3-title">
+                <article class="company-block orange" style="--company-color: var(--color-orange-500)" aria-labelledby="company3-title">
                     <div class="company-block-header">
                         <div class="company-block-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2038,7 +2151,7 @@
                                 </div>
                                 <div class="company-stat">
                                     <div class="company-stat-label">主要職能</div>
-                                    <div class="company-stat-value">大破敵陣</div>
+                                    <div class="company-stat-value">衝陷敵陣</div>
                                 </div>
                             </div>
                         </div>
@@ -2106,10 +2219,10 @@
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <!-- 旗桿 -->
                                     <path d="M4 2v20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-  
+
                                      <!-- 旗幟 (波浪飄揚效果) -->
-                                     <path d="M6 4c2-1 4-1 6 0s4 1 6 0v6c-2 1-4 1-6 0s-4-1-6 0V4z" 
-                                            fill="currentColor" 
+                                     <path d="M6 4c2-1 4-1 6 0s4 1 6 0v6c-2 1-4 1-6 0s-4-1-6 0V4z"
+                                            fill="currentColor"
                                             opacity="0.9"/>
                                 </svg>
                             </div>
